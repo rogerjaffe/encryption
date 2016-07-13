@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" media="screen">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" type="text/css">
+  	<link rel="stylesheet" href="rotate.css" type="text/css">
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+	  <script src="ramda.min.js"></script>
+	  <script src="rotate.js"></script>
+    <title>Rotation cipher demonstration</title>
+  </head>
+  <body>
+  	<div id="container" class="container">
+  		<div class="row">
+  			<h3 class="text-center">Rotation Cipher Demonstration</h3>
+  			<div class="text-center current-shift">
+  				<span data-bind="text: shiftedText"></span>
+  				<button data-bind="click: shiftUp" class="btn btn-xs btn-primary">Up</button>
+  				<button data-bind="click: shiftDown" class="btn btn-xs btn-primary">Down</button>
+  			</div>
+  		</div>
+  		<div class="row">
+  			<div class="text-center current-shift">
+  				<h5 class="shift-table" data-bind="html: lettersText"></h5>
+  				<h5 class="shift-table" data-bind="html: encryptedLettersText"></h5>
+  			</div>
+  		</div>
+  		<div class="row">
+	  		<div class="col-md-6">
+	  			<h3 class="text-center">Input</h3>
+	  			<textarea data-bind="textInput: enInput" rows="5" class="form-control box-size"></textarea>		
+	  		</div>
+	  		<div class="col-md-6">
+	  			<h3 class="text-center">Cipher text</h3>
+	  			<div data-bind="html: enCipher" class="border box-size"></div>
+	  		</div>
+	  	</div>
+  		<div class="row">
+	  		<div class="col-md-6">
+	  			<h3 class="text-center">Cipher text</h3>
+	  			<textarea data-bind="textInput: deCipher" rows="5" class="form-control box-size"></textarea>		
+	  		</div>
+	  		<div class="col-md-6">
+	  			<h3 class="text-center">Decoded message</h3>
+	  			<div data-bind="html: deInput" class="border box-size"></div>
+	  		</div>
+	  	</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-md-12">
+  			<h6 class="text-center big-top-margin">AP Computer Science Principles Section 2.2C</h6>
+  		</div>
+  	</div>
+  </body>
+</html>
