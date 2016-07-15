@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" media="screen">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" type="text/css">
+  	<link rel="stylesheet" href="paired_keys.css" type="text/css">
+		<script src="jquery-2.2.4.min.js"></script>
+		<script src="knockout-min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="bootbox.min.js"></script>
+	  <script src="ramda.min.js"></script>
+	  <script src="paired_keys.js"></script>
+    <script src="paired_keys_vm.js"></script>
+    <title>Public Key Encryption Demonstration</title>
+  </head>
+  <body>
+  	<div id="container" class="container">
+  		<div class="row title-header">
+  			<h3 class="text-center">Public Key Encryption Demonstration</h3>
+        <h5 class="text-center">Receiving a message from your bank</h5>
+  		</div>
+      <div class="row divider">
+        <div class="col-md-3">
+          <h5>Step 1: You need to create public and private keys.  You give the public key to anyone who needs to send you encrypted data.</h5>
+          <h5>For example, you would want to receive encrypted data from your bank or credit card company since you don't want that information stolen by a bad guy.</h5>
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-3 col-md-offset-1 text-center key-border">
+              <div class="key-header">Your PUBLIC key</div>
+              <h5>You give this number pair to the bank</h5>
+              <div class="key-font" data-bind="html: key1Text"></div>
+            </div>
+            <div class="col-md-3 col-md-offset-1 text-center key-border">
+              <div class="key-header">Your PRIVATE key</div>
+              <h5>This number pair you keep private</h5>
+              <div class="key-font" data-bind="html: key2Text"></div>
+            </div>
+            <div class="col-md-4 text-center">
+              <p class="key-button"><button class="btn btn-primary col-md-12" data-bind="click: newKeyClick">Generate new keys</button></p>
+              <p><button class="btn btn-primary col-md-12" data-bind="click: enterKeyClick">Enter your own keys</button></p>
+            </div>          
+          </div>
+        </div>
+      </div>
+
+      <div class="row divider">
+        <div class="col-md-3">
+          <h5>Step 2: The bank will "numerize" the message by converting the characters to their ASCII equivalent values</h5>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <h5>Enter a message in the box below</h5>
+            <textarea class="set-textarea-size" data-bind="textInput: message"></textarea>
+          </div>
+        </div>
+        <div class="col-md-1">
+          &nbsp;
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <h5>This is the "numerized" message</h5>
+            <textarea class="set-textarea-size" disabled="disabled" data-bind="textInput: numerizedMessage"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row divider">
+        <div class="col-md-3">
+          <h5>Step 3: You give your public key to the bank via the website (the web browser does this automatically).</h5>
+          <h5>The bank uses your public key to encrypt the numerized message.</h5>
+          <h5>This encrypted data is what they will send to you over the internet</h5>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <h5>The numerized message from Step 2:</h5>
+            <textarea class="set-textarea-size" disabled="disabled" data-bind="textInput: numerizedMessage"></textarea>
+          </div>
+        </div>
+        <div class="col-md-1">
+          &nbsp;
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <h5>This is the "encrypted" message</h5>
+            <textarea class="set-textarea-size" disabled="disabled" data-bind="textInput: encryptedMessage"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row divider">
+        <div class="col-md-3">
+          <h5>Step 4: You receive the encrypted data over the internet from the bank.</h5>
+          <h5>You decrypt the data using your private key.</h5>
+          <h5>The message is safe from bad guys because they need the private key (known only to you) to decrypt the message.</h5>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <h5>The received encrypted message (copy/paste from Step 3):</h5>
+            <textarea class="set-textarea-size" data-bind="textInput: sentMessage"></textarea>
+          </div>
+        </div>
+        <div class="col-md-1">
+          &nbsp;
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <h5>This is the "decrypted", numerized message using your private key</h5>
+            <textarea class="set-textarea-size" disabled="disabled" data-bind="textInput: decryptedNumerizedMsg"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row divider">
+        <div class="col-md-3">
+          <h5>Step 5: Finally, you convert the decrypted and numerized message back into characters using the reverse process of numerizing we did in Step 2.</h5>
+          <h5>The result you get in the last box should match the message you entered in Step 1</h5>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <h5>The decrypted, but still numerized message (from Step 4):</h5>
+            <textarea class="set-textarea-size" disabled="disabled" data-bind="textInput: decryptedNumerizedMsg"></textarea>
+          </div>
+        </div>
+        <div class="col-md-1">
+          &nbsp;
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <h5>This is the "decrypted", numerized message using your private key.</h5>
+            <textarea class="set-textarea-size" disabled="disabled" data-bind="textInput: plainText"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h6 class="text-center big-top-margin">AP Computer Science Principles Section 2.2D</h6>
+      </div>
+    </div>
+  </body>
+</html>
