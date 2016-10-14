@@ -88,12 +88,20 @@
       </div>
     </div>
     <div class="enter-key-dlg hide-dialog">
-      <div>
-        <label>Recipient's Public Modulus</label><input id="publicModulus" type="text" />
-      </div>
-      <div>
-        <label>Recipient's Public Key</label><input id="publicKey" type="text" />
-      </div>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="publicModulus" class="col-md-4 control-label">Recipient's Public modulus</label>
+          <div class="col-md-7">
+            <input class="form-control" id="publicModulus" type="text" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="publicKey" class="col-md-4 control-label">Recipient's Public key</label>
+          <div class="col-md-7">
+            <input id="publicKey" type="text" class="form-control" />
+          </div>
+        </div>
+      </form>
     </div>
   </body>
 </html>
